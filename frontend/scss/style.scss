@@ -1,0 +1,227 @@
+// ================= VARIABLES =================
+$bg-main: #0f1115;
+$bg-card: #1a1d23;
+$bg-header: #151922;
+$bg-panel: #10131a;
+
+$green: #3cff9e;
+$yellow: #ffd166;
+$red: #ff4d6d;
+$cyan: #4cc9f0;
+
+
+// ================= BASE =================
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: $bg-main;
+  color: #fff;
+}
+
+// ================= HEADER =================
+.header {
+  background: linear-gradient(
+    180deg,
+    #151922 0%,
+    #0f1115 100%
+  );
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+
+  h1 {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .5px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+.status-online {
+  background: green;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+// ================= ALARM NOTIFICATION =================
+.alarm-notif {
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+
+  #alarm-badge {
+    background: $red;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+
+  .alarm-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 28px;
+    background: #0f1115;
+    border: 1px solid #333;
+    width: 240px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.7);
+
+    div {
+      padding: 8px 10px;
+      font-size: 12px;
+      border-bottom: 1px solid #222;
+      line-height: 1.4;   
+    }
+
+    .alarm-item { color: $red; }
+    .warning-item { color: $yellow; }
+    .no-alarm { color: $green; }
+  }
+}
+
+// ================= TREND =================
+.trend-panel {
+  background: $bg-panel;
+  padding: 10px;
+  border-bottom: 2px solid #333;
+
+  .trend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $cyan;
+    margin-bottom: 6px;
+  }
+
+  select {
+    background: #222;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 4px 6px;
+  }
+}
+
+// ================= GRID =================
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.card {
+  background: radial-gradient(
+    circle at top,
+    #1f232b 0%,
+    #14171d 70%
+  );
+  border-radius: 12px;
+  padding: 14px 12px 16px;
+  text-align: center;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 10px 30px rgba(0,0,0,0.5);
+  transition: transform .15s ease, box-shadow .15s ease;
+
+  h2 {
+    color: $cyan;
+    font-size: 15px;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+  }
+
+  .value {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .status-text {
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: .8;
+  }
+}
+
+// ================= STATUS COLORS =================
+.normal {
+  box-shadow:
+    inset 0 0 0 1px rgba($green, .35);
+}
+
+.warning {
+  box-shadow:
+    inset 0 0 0 1px rgba($yellow, .6),
+    0 0 10px rgba($yellow, .25);
+}
+
+.alarm {
+  box-shadow:
+    inset 0 0 0 1px rgba($red, .9),
+    0 0 14px rgba($red, .45);
+}
+
+// ================= FOOTER =================
+.footer {
+  background: #111;
+  padding: 6px;
+  font-size: 11px;
+  text-align: center;
+}
+
+// ================= LCD 5 INCH =================
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trend-panel canvas {
+    max-height: 160px;
+  }
+  .value {
+    font-size: 18px;
+  }
+
+  .card h2 {
+    font-size: 14px;
+  }
+
+  .status-text {
+    font-size: 9px;
+  }
+}
+
+.chart-wrapper {
+  height: 220px;
+  max-height: 220px;
+  position: relative;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* LCD 5 inch */
+@media (max-width: 900px) {
+  .chart-wrapper {
+    height: 160px;
+  }
+}
+

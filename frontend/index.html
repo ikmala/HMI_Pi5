@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HMI Monitoring Kolam</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="header">
+  <h1>SYSTEM MONITORING IKAN</h1>
+
+  <div class="header-right">
+    <div id="alarm-notif" class="alarm-notif">
+      🔔 <span id="alarm-badge">0</span>
+      <div id="alarm-dropdown" class="alarm-dropdown">
+        <div class="no-alarm">🟢 Tidak ada alarm</div>
+      </div>
+    </div>
+
+    <div id="status" class="status-online">ONLINE</div>
+  </div>
+</header>
+
+<section id="trend-panel" class="trend-panel">
+  <div class="trend-header">
+    <select id="kolam-select">
+      ${[...Array(12)].map((_,i)=>`<option value="${i+1}">Kolam ${i+1}</option>`).join("")}
+    </select>
+  </div>
+  <div class="chart-wrapper">
+    <canvas id="trendChart"></canvas>
+  </div>
+</section>
+
+<main id="grid" class="grid"></main>
+
+<footer class="footer">
+  System Monitoring | Telkom University
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
