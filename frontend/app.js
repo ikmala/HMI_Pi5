@@ -137,6 +137,18 @@ async function loadData() {
 
   updateChart();
 }
+const fsBtn = document.getElementById("fs-btn");
+
+fsBtn.onclick = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+    fsBtn.textContent = "⤢";
+  } else {
+    document.exitFullscreen();
+    fsBtn.textContent = "⛶";
+  }
+};
+
 
 setInterval(loadData, 1000);
 loadData();
