@@ -10,6 +10,11 @@ $red: #ff4d6d;
 $cyan: #4cc9f0;
 
 
+html, body {
+  height: 100%;
+  overflow: hidden; // ⛔ scroll global
+}
+
 // ================= BASE =================
 * {
   box-sizing: border-box;
@@ -35,6 +40,9 @@ body {
   align-items: center;
   min-height: 42px;
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
 
   h1 {
     font-size: 15px;
@@ -108,11 +116,13 @@ body {
 // ================= TREND =================
 .trend-panel {
   background: linear-gradient(180deg, #10131a, #0c0f14);
-  padding: 8px 10px;
+  height: 140px; // ⬅️ FIXED
+  padding: 6px 10px;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 
   .trend-header {
     display: flex;
+    height: 100px;
     justify-content: space-between;
     align-items: center;
     color: $cyan;
@@ -200,6 +210,9 @@ body {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .trend-panel {
+    height: 150px;
+  }
 
   .trend-panel canvas {
     max-height: 160px;
@@ -218,8 +231,8 @@ body {
 }
 
 .chart-wrapper {
-  height: 180px;
-  max-height: 180px;
+  height: 120px; // ⬅️ grafik saja
+  max-height: 120px;
   position: relative;
 
   canvas {
@@ -231,7 +244,7 @@ body {
 /* LCD 5 inch */
 @media (max-width: 900px) {
   .chart-wrapper {
-    height: 140px; 
+    height: 100px;
   }
 }
 
