@@ -1,139 +1,40 @@
 // ================= VARIABLES =================
-$bg-main: #0f1115;
-$bg-card: #1a1d23;
-$bg-header: #151922;
-$bg-panel: #10131a;
+$bg-app: #f8fafc;        // Abu-abu sangat muda (hampir putih)
+$white: #ffffff;
+$text-dark: #1e293b;    // Biru gelap untuk teks utama
+$text-muted: #64748b;   // Abu-abu untuk label
 
-$green: #3cff9e;
-$yellow: #ffd166;
-$red: #ff4d6d;
-$cyan: #4cc9f0;
-
-
-html, body {
-  height: 100%;
-  overflow: hidden; // ⛔ scroll global
-}
-
-// ================= BASE =================
-* {
-  box-sizing: border-box;
-}
+$primary: #0ea5e9;      // Biru cerah (Sky Blue)
+$success: #10b981;      // Hijau
+$warning: #f59e0b;      // Kuning/Amber
+$danger: #ef4444;       // Merah
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: $bg-main;
-  color: #fff;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: $bg-app;
+  color: $text-dark;
+  height: 100vh;
+  overflow: hidden;
 }
 
 // ================= HEADER =================
 .header {
-  background: linear-gradient(
-    180deg,
-    #151922 0%,
-    #0f1115 100%
-  );
-  padding: 6px 12px;
+  height: 56px;
+  background: $white;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 42px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  height: 42px;
-  min-height: 42px;
-  max-height: 42px;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 
   h1 {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: .5px;
-    margin: 0;
-  }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-}
-
-.status-online {
-  background: green;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: 11px;
-}
-.fs-btn {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #aaa;
-  font-size: 12px;
-  padding: 4px 6px;
-  border-radius: 4px;
-}
-
-// ================= ALARM NOTIFICATION =================
-.alarm-notif {
-  position: relative;
-  cursor: pointer;
-  font-size: 16px;
-
-  #alarm-badge {
-    background: $red;
-    border-radius: 10px;
-    padding: 1px 6px;
-    font-size: 10px;
-  }
-
-  .alarm-dropdown {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 28px;
-    background: #0f1115;
-    border: 1px solid #333;
-    width: 240px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-    border-radius: 10px;
-    box-shadow: 0 12px 40px rgba(0,0,0,.7);
-
-    div {
-      padding: 8px 10px;
-      font-size: 12px;
-      border-bottom: 1px solid #222;
-      line-height: 1.4;   
-    }
-
-    .alarm-item { color: $red; }
-    .warning-item { color: $yellow; }
-    .no-alarm { color: $green; }
-  }
-}
-
-// ================= TREND =================
-.trend-panel {
-  background: linear-gradient(180deg, #10131a, #0c0f14);
-  height: 140px; // ⬅️ FIXED
-  padding: 6px 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-
-  .trend-header {
-    display: flex;
-    height: 100px;
-    justify-content: space-between;
-    align-items: center;
-    color: $cyan;
-    margin-bottom: 6px;
-  }
-
-  select {
-    background: #222;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 4px 6px;
+    font-size: 16px;
+    font-weight: 800;
+    color: $text-dark;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 }
 
@@ -141,110 +42,106 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 10px;
+  gap: 12px;
+  padding: 16px;
+  height: calc(100vh - 56px);
 }
 
+// ================= CARD DESIGN =================
 .card {
-  background: radial-gradient(
-    circle at top,
-    #1f232b 0%,
-    #14171d 70%
-  );
+  background: $white;
   border-radius: 12px;
-  padding: 14px 12px 16px;
-  text-align: center;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.04),
-    0 10px 30px rgba(0,0,0,0.5);
-  transition: transform .15s ease, box-shadow .15s ease;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
 
-  h2 {
-    color: $cyan;
-    font-size: 15px;
-    letter-spacing: .5px;
-    margin-bottom: 6px;
+  // Garis indikator status di atas
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: #cbd5e1;
   }
 
-  .value {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.2;
+  .card-header {
+    padding: 12px 14px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h2 {
+      font-size: 13px;
+      margin: 0;
+      color: $primary;
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #cbd5e1;
+    }
   }
 
-  .status-text {
+  .card-body {
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .param {
+    .label {
+      font-size: 9px;
+      color: $text-muted;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: block;
+    }
+    .value-box {
+      display: flex;
+      align-items: baseline;
+      gap: 3px;
+      .val { font-size: 22px; font-weight: 800; color: #0f172a; }
+      .unit { font-size: 11px; color: $text-muted; font-weight: 500; }
+    }
+  }
+
+  .card-footer {
+    margin-top: auto;
+    padding: 8px 14px;
     font-size: 10px;
-    letter-spacing: 1px;
-    opacity: .8;
+    font-weight: 800;
+    text-align: center;
+    background: #f1f5f9;
+    color: $text-muted;
   }
 }
 
-// ================= STATUS COLORS =================
+// ================= STATUS STATES =================
 .normal {
-  box-shadow:
-    inset 0 0 0 1px rgba($green, .35);
+  &::before { background: $success; }
+  .live-dot { background: $success; box-shadow: 0 0 6px rgba($success, 0.4); }
+  .card-footer { color: $success; background: rgba($success, 0.05); }
 }
 
 .warning {
-  box-shadow:
-    inset 0 0 0 1px rgba($yellow, .6),
-    0 0 10px rgba($yellow, .25);
+  &::before { background: $warning; }
+  .live-dot { background: $warning; }
+  .card-footer { color: darken($warning, 10%); background: rgba($warning, 0.08); }
 }
 
 .alarm {
-  box-shadow:
-    inset 0 0 0 1px rgba($red, .9),
-    0 0 14px rgba($red, .45);
+  &::before { background: $danger; }
+  .live-dot { background: $danger; animation: blink 0.8s infinite; }
+  .card-footer { color: $white; background: $danger; }
+  border-color: rgba($danger, 0.2);
 }
 
-// ================= FOOTER =================
-.footer {
-  background: #111;
-  padding: 6px;
-  font-size: 11px;
-  text-align: center;
+@keyframes blink { 
+  0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } 
 }
-
-// ================= LCD 5 INCH =================
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .trend-panel {
-    height: 150px;
-  }
-
-  .trend-panel canvas {
-    max-height: 160px;
-  }
-  .value {
-    font-size: 18px;
-  }
-
-  .card h2 {
-    font-size: 14px;
-  }
-
-  .status-text {
-    font-size: 9px;
-  }
-}
-
-.chart-wrapper {
-  height: 120px; // ⬅️ grafik saja
-  max-height: 120px;
-  position: relative;
-
-  canvas {
-    width: 100% !important;
-    height: 100% !important;
-  }
-}
-
-/* LCD 5 inch */
-@media (max-width: 900px) {
-  .chart-wrapper {
-    height: 100px;
-  }
-}
-
